@@ -62,6 +62,16 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <!-- Include tags -->
+                    <groups>fast, api</groups>
+                    <!-- Exclude tags -->
+                    <excludedGroups>load, acceptance</excludedGroups>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

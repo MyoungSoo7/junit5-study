@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Builder
-@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Person {

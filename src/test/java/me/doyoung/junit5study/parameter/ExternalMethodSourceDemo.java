@@ -7,10 +7,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class ExternalMethodSourceDemo {
-    @ParameterizedTest
-    @MethodSource("me.doyoung.junit5study.parameter.StringsProviders#tinyStrings")
-    void testWithExternalMethodSource(String tinyString) {
-        // test with tiny string
-    }
+
+@ParameterizedTest
+@MethodSource("me.doyoung.junit5study.parameter.StringsProviders#tinyStrings")
+void testWithExternalMethodSource(String tinyString) {
+    // test with tiny string
+}
 
 }

@@ -2,6 +2,7 @@ package me.doyoung.junit5study.assertions;
 
 import me.doyoung.junit5study.example.domain.Person;
 import me.doyoung.junit5study.example.util.Calculator;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CountDownLatch;
@@ -17,6 +18,7 @@ class AssertionsDemo {
 
     @Test
     void standardAssertions() {
+
         assertEquals(2, calculator.add(1, 1));
         assertEquals(4, calculator.multiply(2, 2),
                 "The optional failure message is now the last parameter");
@@ -68,7 +70,7 @@ class AssertionsDemo {
     void exceptionTesting() {
         Exception exception = assertThrows(ArithmeticException.class, () ->
                 calculator.divide(1, 0));
-        assertEquals("/ by zero", exception.getMessage());
+//        assertEquals("/ by zero", exception.getMessage());
     }
 
     @Test
@@ -99,10 +101,37 @@ class AssertionsDemo {
     void timeoutExceeded() {
         // The following assertion fails with an error message similar to:
         // execution exceeded timeout of 10 ms by 91 ms
-        assertTimeout(ofMillis(10), () -> {
+        assertTimeout(ofMillis(2000), () -> {
             // Simulate task that takes more than 10 ms.
+            System.out.println("asd");
             Thread.sleep(100);
         });
+
+        assertTimeout(ofMillis(3000), () -> {
+            // Simulate task that takes more than 10 ms.
+            System.out.println("asd2");
+            Thread.sleep(100);
+        });
+    }
+
+    @Nested
+    class timeOutTestClass {
+@Test
+void timeoutExceeded() {
+    assertTimeoutPreemptively(ofMillis(10), () -> {
+        // Simulate task that takes more than 10 ms.
+        System.out.println("asd");
+        Thread.sleep(3000);
+    });
+}
+        @Test
+        void timeoutExceeded2(){
+            assertTimeout(ofMillis(3000), () -> {
+                // Simulate task that takes more than 10 ms.
+                System.out.println("asd2");
+                Thread.sleep(100);
+            });
+        }
     }
 
     @Test

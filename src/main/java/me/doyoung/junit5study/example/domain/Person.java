@@ -1,13 +1,25 @@
 package me.doyoung.junit5study.example.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Entity
 @Getter
+@Builder
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     public enum Gender {
         F, M
@@ -70,16 +82,14 @@ public class Person {
             if (other.firstName != null) {
                 return false;
             }
-        }
-        else if (!firstName.equals(other.firstName)) {
+        } else if (!firstName.equals(other.firstName)) {
             return false;
         }
         if (lastName == null) {
             if (other.lastName != null) {
                 return false;
             }
-        }
-        else if (!lastName.equals(other.lastName)) {
+        } else if (!lastName.equals(other.lastName)) {
             return false;
         }
         return true;

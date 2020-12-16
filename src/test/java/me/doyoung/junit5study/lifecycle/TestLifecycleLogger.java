@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 
 import java.util.logging.Logger;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestInstance(TestInstance.Lifecycle.PER_METHOD)
 interface TestLifecycleLogger {
 
     static final Logger logger = Logger.getLogger(TestLifecycleLogger.class.getName());
